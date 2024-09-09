@@ -1,0 +1,74 @@
+.home-cards {
+  margin: 60px 0px 40px 0px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+.btn-home {
+  margin-bottom: 40px;
+}
+
+.btn-home a button {
+  background-color: rgb(47, 47, 255);
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 10px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  cursor: pointer;
+  width: 50%;
+  margin-left: 320px;
+}
+.btn-home a button:hover {
+  background-color: rgb(47, 47, 200);
+}
+.products {
+  display: flex;
+  gap: 30px;
+}
+.products-filter {
+  background: rgb(225, 225, 225);
+  width: 400px;
+  height: fit-content;
+  display: flex;
+  padding-top: 20px;
+  padding-left: 20px;
+  padding-right: 20px;
+  flex-direction: column;
+}
+.products-card {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 40px;
+}
+.single-product {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 40px;
+}
+
+.single-product-info button {
+  background-color: rgb(47, 47, 255);
+  border: none;
+  color: white;
+  border-radius: 10px;
+  font-size: 0.8rem;
+  height: 50px;
+  cursor: pointer;
+  width: 300px;
+}
+.single-product-info button:hover {
+  background-color: rgb(47, 47, 200);
+}
+.single-product-description {
+  margin-top: 40px;
+  background: rgb(225, 225, 225);
+  padding: 20px;
+}
+.desc {
+  display: flex;
+  justify-content: space-around;
+}
