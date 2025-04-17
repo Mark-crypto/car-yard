@@ -1,6 +1,8 @@
 import Navbar from "react-bootstrap/Navbar";
+import { useSelector } from "react-redux";
 
 export const NavBar = () => {
+  const cart = useSelector((state) => state.cart.cartItems);
   return (
     <>
       <Navbar
@@ -14,6 +16,7 @@ export const NavBar = () => {
             <li>DREAM</li>
             <li>BUY </li>
             <li>DRIVE AWAY</li>
+            <li>{cart.length}</li>
           </ul>
         </h3>
       </Navbar>

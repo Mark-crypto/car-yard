@@ -16,7 +16,9 @@ export const Products = () => {
   useEffect(() => {
     try {
       const fetchData = async () => {
-        const dataResponse = await fetch("https://freetestapi.com/api/v1/cars");
+        const dataResponse = await fetch(
+          "https://www.freetestapi.com/api/v1/cars"
+        );
         const response = await dataResponse.json();
         setData(response);
         setIsLoading(false);

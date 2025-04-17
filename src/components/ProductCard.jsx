@@ -4,16 +4,18 @@ import Card from "react-bootstrap/Card";
 import { Loading } from "./Loading";
 import "./components.css";
 import dodge from "../assets/dodge.jpg";
+import { useNavigate } from "react-router-dom";
 
 export const ProductCard = () => {
   const [data, setData] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [isError, setIsError] = useState(false);
 
+  const navigate = useNavigate();
   useEffect(() => {
     try {
       const fetchData = async () => {
-        const data = await fetch("https://freetestapi.com/api/v1/cars");
+        const data = await fetch("https://www.freetestapi.com/api/v1/cars");
         const response = await data.json();
         const newData = response.slice(0, 8);
         setData(newData);
@@ -27,7 +29,8 @@ export const ProductCard = () => {
     }
   }, []);
   const handleClick = (id) => {
-    window.location.href = `/product/${id}`;
+    console.log(id);
+    navigate(`/product/${id}`);
   };
   if (isLoading) {
     return (

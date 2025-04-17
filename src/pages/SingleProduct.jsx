@@ -1,18 +1,23 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import dodge from "../assets/dodge.jpg";
 import { useParams } from "react-router-dom";
 import { NavBar } from "../components/NavBar";
 import { Footers } from "../components/Footers";
+import { useDispatch } from "react-redux";
+import { addToCart } from "../slicers/CartSlicer";
 
 export const SingleProduct = () => {
   const { id } = useParams();
   const [product, setProduct] = useState({});
   const [show, setShow] = useState(false);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     try {
       const fetchData = async () => {
-        const data = await fetch(`https://freetestapi.com/api/v1/cars/${id}`);
+        const data = await fetch(
+          `https://www.freetestapi.com/api/v1/cars/${id}`
+        );
         const response = await data.json();
 
         setProduct(response);
@@ -51,6 +56,9 @@ export const SingleProduct = () => {
             <span style={{ fontWeight: "bold" }}>Engine: </span>
             {product.engine}
           </p>
+          <button type="button" onClick={dispatch(addToCart({ product }))}>
+            <h4>Add to cart</h4>
+          </button>
           <button type="button" onClick={() => setShow(!show)}>
             {show ? <h4>0712345678</h4> : <h4>Contact Dealer</h4>}
           </button>

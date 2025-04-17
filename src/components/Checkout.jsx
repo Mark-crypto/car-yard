@@ -3,18 +3,18 @@ import { addItem, removeItem } from "../slicers/CartSlicer";
 
 const Checkout = () => {
   const dispatch = useDispatch();
-  const { itemAmount, totalPrice } = useSelector(
-    (state) => state.cart.cartItems
-  );
+  const data = useSelector((state) => state.cart);
+  const price = 300;
+
   return (
     <>
       <div>
         <h4>Checkout</h4>
         <button onClick={() => dispatch(addItem())}>+</button>
-        <p>{itemAmount}</p>
+        <p>{data.itemAmount}</p>
         <button onClick={() => dispatch(removeItem())}>-</button>
         <h4>Total</h4>
-        <p>{totalPrice}</p>
+        <p>{data.itemAmount * price}</p>
       </div>
     </>
   );
