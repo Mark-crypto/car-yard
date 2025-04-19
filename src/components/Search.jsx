@@ -4,6 +4,7 @@ import _ from "lodash";
 import "./components.css";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import display from "../assets/car8.jpg";
 
 export const Search = () => {
   //capture input
@@ -49,37 +50,50 @@ export const Search = () => {
 
   return (
     <>
-      <div className="search">
-        <input
-          type="search"
-          id="search"
-          name="search"
-          value={query}
-          onChange={(e) => setQuery(e.target.value)}
-          placeholder="Search for cars...."
-        ></input>
+      <div class="search-container">
+        <div className="search">
+          <input
+            type="search"
+            id="search"
+            name="search"
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+            placeholder="Search for cars...."
+          ></input>
 
-        <button type="button" onClick={() => debouncedSearch(query)}>
-          <CiSearch className="search-icon" />
-        </button>
-      </div>
-      <div>
-        <ul>
+          <button type="button" onClick={() => debouncedSearch(query)}>
+            <CiSearch className="search-icon" />
+          </button>
+        </div>
+
+        <ul className="suggestions">
           {!loading && !error && suggestion.length === 0 && query && (
             <p>No cars found.</p>
           )}
           {loading && <h2>Searching...</h2>}
           {error && <h2>{error}</h2>}
           {suggestion
-            ? suggestion.map((car) => (
+            ? suggestion.slice(4).map((car) => (
                 <li key={car.id}>
                   <div onClick={() => getSearchedCar(car.id)}>
-                    {/* car name, year, make, model */}
-
                     <div className="suggestion-item">
-                      <h4>Year:{car.year}</h4>
-                      <h4>Model:{car.model}</h4>
-                      <h4>Make:{car.make}</h4>
+                      <div>
+                        <img
+                          src={display}
+                          alt="car"
+                          style={{ width: "150px", height: "100px" }}
+                        />
+                      </div>
+                      <div>
+                        <p>
+                          <b>
+                            Car Name: {car.make} {car.model}
+                          </b>
+                        </p>
+                        <p>
+                          <b>Price: ${car.price}</b>
+                        </p>
+                      </div>
                     </div>
                   </div>
                 </li>

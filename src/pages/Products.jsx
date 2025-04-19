@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { NavBar } from "../components/NavBar";
 import { Footers } from "../components/Footers";
 import { Search } from "../components/Search";
-import { SideBar } from "../components/SideBar";
+// import { SideBar } from "../components/SideBar";
 import { Posts } from "./Posts";
 import { Pagination } from "../components/Pagination";
 
@@ -49,7 +49,9 @@ export const Products = () => {
   return (
     <>
       <NavBar />
+
       <Search />
+
       <div className="products">
         {/* <div className="products-filter">
           <SideBar setData={setData} data={data} />

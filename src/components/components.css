@@ -1,23 +1,113 @@
-.search {
+.nav-list {
+  display: flex;
+  flex-direction: row;
+  gap: 100px;
+  margin: auto;
+  list-style: none;
+  justify-content: space-between;
+  width: 100%;
+  padding-left: 20px;
+  padding-right: 50px;
+}
+.nav-list a {
+  color: white;
+  text-decoration: none;
+  display: flex;
+  font-size: 20px;
+  align-items: center;
+  gap: 5px;
+}
+.nav-list li a:hover {
+  color: #1e90ff;
+}
+.image-slide {
+  height: 400px;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url("../assets/car6.jpg");
+  background-size: cover;
+  height: 400px;
   display: flex;
   justify-content: center;
-  margin: 40px 0px 40px 0px;
+  align-items: center;
 }
+.search-container {
+  display: flex;
+  justify-content: center;
+  position: relative;
+  margin: 40px 0;
+}
+
+.search {
+  display: flex;
+  width: 560px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 6px;
+  overflow: hidden;
+  background-color: white;
+}
+
 .search input {
-  width: 500px;
-  border-right: none;
-  border-radius: 6px 0px 0px 6px;
+  flex: 1;
+  height: 60px;
+  padding: 0 15px;
+  border: none;
+  outline: none;
+  font-size: 16px;
+  border-radius: 6px 0 0 6px;
 }
+
 .search button {
-  background: blue;
-  color: white;
-  border-radius: 0px 6px 6px 0px;
-}
-.search button:hover {
   background: #1e90ff;
+  color: white;
+  border: none;
+  width: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border-radius: 0 6px 6px 0;
+  transition: background 0.3s ease;
 }
+
+.search button:hover {
+  background: #005fcc;
+}
+
 .search-icon {
   font-size: 20px;
+}
+
+.suggestions {
+  position: absolute;
+  top: 65px; /* aligns just below the input */
+  width: 100%;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  background-color: white;
+  border: 1px solid #ddd;
+  border-top: none;
+  border-radius: 0 0 6px 6px;
+  max-height: 250px;
+  overflow-y: auto;
+  box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.08);
+  z-index: 1000;
+}
+
+.suggestions li {
+  padding: 5px 16px;
+  cursor: pointer;
+  font-size: 15px;
+  color: #333;
+}
+
+.suggestions li:hover {
+  background-color: #f3f3f3;
+}
+.suggestion-item {
+  display: flex;
+  gap: 50px;
+  height: 100px;
 }
 .products-pagination {
   display: flex;

@@ -1,5 +1,7 @@
 import Navbar from "react-bootstrap/Navbar";
 import { useSelector } from "react-redux";
+import { TiShoppingCart } from "react-icons/ti";
+import "./components.css";
 
 export const NavBar = () => {
   const itemsInCart = useSelector((state) => state.cart.cartItems.length);
@@ -10,15 +12,28 @@ export const NavBar = () => {
         className="bg-body-tertiary"
         bg="dark"
         data-bs-theme="dark"
+        style={{
+          height: "50px",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          color: "white",
+        }}
       >
-        <h3 style={{ margin: "auto", color: "white" }}>
-          <ul style={{ display: "flex", gap: "60px", alignItems: "center" }}>
-            <li>DREAM</li>
-            <li>BUY </li>
-            <li>DRIVE AWAY</li>
-            <li>🛒 Cart ({itemsInCart})</li>
-          </ul>
-        </h3>
+        <ul className="nav-list">
+          <li>
+            <h4>
+              <i>Dreams Car Yard</i>
+            </h4>
+          </li>
+          <li>
+            <a href="/payment">
+              <h5>Shopping Cart</h5>
+              <TiShoppingCart style={{ fontSize: "25px" }} />{" "}
+              <h5> {itemsInCart} </h5>
+            </a>
+          </li>
+        </ul>
       </Navbar>
     </>
   );
