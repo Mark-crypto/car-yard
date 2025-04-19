@@ -1,23 +1,28 @@
 import { useEffect, useState } from "react";
 import dodge from "../assets/dodge.jpg";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { NavBar } from "../components/NavBar";
 import { Footers } from "../components/Footers";
 import { useDispatch } from "react-redux";
-import { addToCart } from "../slicers/CartSlicer";
+import {
+  addItem,
+  addToCart,
+  calculateTotal,
+  removeFromCart,
+  removeItem,
+} from "../slicers/CartSlicer";
+import Checkout from "../components/Checkout";
 
 export const SingleProduct = () => {
   const { id } = useParams();
   const [product, setProduct] = useState({});
-  const [show, setShow] = useState(false);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   useEffect(() => {
     try {
       const fetchData = async () => {
-        const data = await fetch(
-          `https://www.freetestapi.com/api/v1/cars/${id}`
-        );
+        const data = await fetch(`/api/api/v1/cars/${id}`);
         const response = await data.json();
 
         setProduct(response);
@@ -28,6 +33,18 @@ export const SingleProduct = () => {
     }
   }, []);
 
+  const payForProduct = (price) => {
+    dispatch(calculateTotal(price));
+    navigate("/payment");
+  };
+  const editCart = (product) => {
+    dispatch(addToCart(product));
+    dispatch(addItem());
+  };
+  const removeCart = (product) => {
+    dispatch(removeFromCart());
+    dispatch(removeItem());
+  };
   return (
     <>
       <NavBar />
@@ -56,11 +73,14 @@ export const SingleProduct = () => {
             <span style={{ fontWeight: "bold" }}>Engine: </span>
             {product.engine}
           </p>
-          <button type="button" onClick={dispatch(addToCart({ product }))}>
+          <button type="button" onClick={() => editCart(product)}>
             <h4>Add to cart</h4>
           </button>
-          <button type="button" onClick={() => setShow(!show)}>
-            {show ? <h4>0712345678</h4> : <h4>Contact Dealer</h4>}
+          <button type="button" onClick={() => payForProduct(product.price)}>
+            PAY
+          </button>
+          <button type="button" onClick={() => removeCart(product)}>
+            Remove from cart
           </button>
         </div>
       </div>

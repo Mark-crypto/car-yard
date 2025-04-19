@@ -1,69 +1,92 @@
-import React, { useState } from "react";
+import React, { useState, useCallback, useEffect } from "react";
 import { CiSearch } from "react-icons/ci";
+import _ from "lodash";
 import "./components.css";
-const vehicles = [
-  "Audi",
-  "Mazda",
-  "Mercedes",
-  "Toyota",
-  "Tesla",
-  "BMW",
-  "Bugatti",
-  "Auris",
-];
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
-export const Search = ({ data, setData }) => {
-  const [searchTerm, setSearchTerm] = useState("");
-  const [filteredData, setFilteredData] = useState(data);
-  const [search, setSearch] = useState(data);
+export const Search = () => {
+  //capture input
+  const [query, setQuery] = useState("");
+  const [suggestion, setSuggestion] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+  const navigate = useNavigate();
 
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
+  const searchItems = async (query) => {
+    if (!query) return setQuery("");
+    try {
+      setLoading(true);
+      setError(null);
+      const response = await axios.get(
+        `https://www.freetestapi.com/api/v1/cars?search=${query}`
+      );
+      console.log(response.data);
+      setSuggestion(response.data);
+    } catch (error) {
+      setError("An error occurred. Please try again later.");
+      console.log("Error:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
-  //   const filteredSearch = search.filter((car) => {
-  //     return car.make.toLowerCase().includes(searchTerm.toLowerCase());
-  //   });
+  const debouncedSearch = useCallback(_.debounce(searchItems, 300), []);
 
-  //   console.log(filteredSearch);
-  //   filteredSearch.sort((a, b) => a.model.localeCompare(b.model));
-  //   setData(filteredSearch);
-  // };
-  const handleClick = (search) => {
-    setSearch(search);
-    //onclick of div and button
+  useEffect(() => {
+    if (query === "") {
+      setSuggestion([]);
+      return;
+    }
+    debouncedSearch(query);
+  }, [query, debouncedSearch]);
+
+  const getSearchedCar = (id) => {
+    navigate(`/product/${id}`);
+    setQuery("");
+    setSuggestion([]);
   };
 
   return (
-    <div className="search">
-      <input
-        type="search"
-        id="search"
-        name="search"
-        value={searchTerm}
-        onChange={(e) => setSearchTerm(e.target.value)}
-      ></input>
+    <>
+      <div className="search">
+        <input
+          type="search"
+          id="search"
+          name="search"
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
+          placeholder="Search for cars...."
+        ></input>
 
-      <button type="button" onClick={() => handleClick(search)}>
-        <CiSearch className="search-icon" />
-      </button>
-      {filteredData
-        .filter((item) => {
-          const searchWord = searchTerm.toLowerCase();
-          const itemLower = item.make.toLowerCase();
-          return (
-            searchWord &&
-            itemLower.startsWith(searchWord) &&
-            itemLower !== searchWord
-          );
-        })
-        .slice(0, 10)
-        .map((car) => {
-          return (
-            <div key={car.id} onClick={() => handleClick(car.make)}>
-              {car.make}
-            </div>
-          );
-        })}
-    </div>
+        <button type="button" onClick={() => debouncedSearch(query)}>
+          <CiSearch className="search-icon" />
+        </button>
+      </div>
+      <div>
+        <ul>
+          {!loading && !error && suggestion.length === 0 && query && (
+            <p>No cars found.</p>
+          )}
+          {loading && <h2>Searching...</h2>}
+          {error && <h2>{error}</h2>}
+          {suggestion
+            ? suggestion.map((car) => (
+                <li key={car.id}>
+                  <div onClick={() => getSearchedCar(car.id)}>
+                    {/* car name, year, make, model */}
+
+                    <div className="suggestion-item">
+                      <h4>Year:{car.year}</h4>
+                      <h4>Model:{car.model}</h4>
+                      <h4>Make:{car.make}</h4>
+                    </div>
+                  </div>
+                </li>
+              ))
+            : ""}
+        </ul>
+      </div>
+    </>
   );
 };

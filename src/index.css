@@ -72,3 +72,30 @@
   display: flex;
   justify-content: space-around;
 }
+.search {
+  position: relative;
+}
+
+.search ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  max-height: 300px;
+  overflow-y: auto;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  background: #fff;
+  position: absolute;
+  width: 100%;
+  z-index: 1000;
+}
+
+.suggestion-item {
+  padding: 12px;
+  cursor: pointer;
+  border-bottom: 1px solid #eee;
+}
+
+.suggestion-item:hover {
+  background-color: #f9f9f9;
+}

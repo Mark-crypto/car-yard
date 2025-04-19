@@ -21,8 +21,22 @@ const cartSlice = createSlice({
     addToCart: (state, action) => {
       state.cartItems.push(action.payload);
     },
+    calculateTotal: (state, action) => {
+      let price = parseInt(action.payload) || 0;
+      let totalItems = parseInt(state.itemAmount) || 0;
+      state.totalPrice += price * totalItems;
+    },
+    removeFromCart: (state, action) => {
+      state.cartItems.pop();
+    },
   },
 });
 
-export const { addItem, removeItem, addToCart } = cartSlice.actions;
+export const {
+  addItem,
+  removeItem,
+  addToCart,
+  calculateTotal,
+  removeFromCart,
+} = cartSlice.actions;
 export default cartSlice.reducer;

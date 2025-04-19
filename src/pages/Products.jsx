@@ -49,11 +49,11 @@ export const Products = () => {
   return (
     <>
       <NavBar />
-      <Search data={data} setData={setData} />
+      <Search />
       <div className="products">
-        <div className="products-filter">
+        {/* <div className="products-filter">
           <SideBar setData={setData} data={data} />
-        </div>
+        </div> */}
         <div className="products-card">
           <Posts currentPosts={currentPosts} handleClick={handleClick} />
         </div>

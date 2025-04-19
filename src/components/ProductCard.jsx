@@ -15,7 +15,8 @@ export const ProductCard = () => {
   useEffect(() => {
     try {
       const fetchData = async () => {
-        const data = await fetch("https://www.freetestapi.com/api/v1/cars");
+        const data = await fetch("/api/api/v1/cars"); //axios.get('/api/api/v1/cars');
+
         const response = await data.json();
         const newData = response.slice(0, 8);
         setData(newData);
