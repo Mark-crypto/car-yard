@@ -11,9 +11,10 @@ import {
   removeFromCart,
   removeItem,
 } from "../slicers/CartSlicer";
-import { FaApplePay } from "react-icons/fa";
+
 import { BsCartDashFill } from "react-icons/bs";
 import { FaCartPlus } from "react-icons/fa";
+import { CheckoutButton } from "../components/CheckoutButton";
 
 export const SingleProduct = () => {
   const { id } = useParams();
@@ -79,9 +80,10 @@ export const SingleProduct = () => {
             <button type="button" onClick={() => editCart(product)}>
               Add to cart <FaCartPlus />
             </button>
-            <button type="button" onClick={() => payForProduct(product.price)}>
+            {/* <button type="button" onClick={() => payForProduct(product.price)}>
               <FaApplePay style={{ fontSize: "30px" }} />
-            </button>
+            </button> */}
+            <CheckoutButton />
             <button type="button" onClick={() => removeCart(product)}>
               Remove from cart <BsCartDashFill />
             </button>

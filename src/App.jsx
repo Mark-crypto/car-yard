@@ -6,6 +6,8 @@ import { Home } from "./pages/Home";
 import { Error404 } from "./pages/Error404";
 import Checkout from "./components/Checkout";
 import Payment from "./pages/Payment";
+import PaymentSuccess from "./components/PaymentSuccess";
+import CancelPayment from "./components/CancelPayment";
 
 export const router = createBrowserRouter([
   {
@@ -27,6 +29,14 @@ export const router = createBrowserRouter([
   {
     path: "/payment",
     element: <Payment />,
+  },
+  {
+    path: "/success",
+    element: <PaymentSuccess />,
+  },
+  {
+    path: "/cancel",
+    element: <CancelPayment />,
   },
   {
     path: "*",

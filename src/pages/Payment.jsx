@@ -1,20 +1,17 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { NavBar } from "../components/NavBar";
-import { useEffect } from "react";
-import { calculateTotal } from "../slicers/CartSlicer";
+import { Footers } from "../components/Footers";
+import { CheckoutButton } from "../components/CheckoutButton";
 
 const Payment = () => {
   const cart = useSelector((state) => state.cart);
-  console.log(cart);
-  const dispatch = useDispatch();
 
-  // useEffect(() => {
-  //   dispatch(calculateTotal());
-  // }, [dispatch]);
   return (
     <>
       <NavBar />
       <h4>Total cost: {cart.totalPrice}</h4>
+      <CheckoutButton />
+      <Footers />
     </>
   );
 };
