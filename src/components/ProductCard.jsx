@@ -15,8 +15,7 @@ export const ProductCard = () => {
   useEffect(() => {
     try {
       const fetchData = async () => {
-        const data = await fetch("/api/api/v1/cars"); //axios.get('/api/api/v1/cars');
-
+        const data = await fetch("/api/api/v1/cars");
         const response = await data.json();
         const newData = response.slice(0, 8);
         setData(newData);
@@ -30,7 +29,6 @@ export const ProductCard = () => {
     }
   }, []);
   const handleClick = (id) => {
-    console.log(id);
     navigate(`/product/${id}`);
   };
   if (isLoading) {
@@ -52,21 +50,21 @@ export const ProductCard = () => {
             <Card.Img variant="top" src={dodge} alt={make} />
             <Card.Body>
               <Card.Title style={{ fontWeight: "bold" }}>{make}</Card.Title>
-              <Card.Text>
-                <p>
-                  <span style={{ fontWeight: "bold" }}>Price: </span>${price}{" "}
-                </p>
-                <p>
-                  <span style={{ fontWeight: "bold" }}>Mileage: </span>
-                  {mileage} Km
-                </p>
-                <p>
-                  <span style={{ fontWeight: "bold" }}>Engine: </span> {engine}{" "}
-                </p>
-                <p>
-                  <span style={{ fontWeight: "bold" }}>Make: </span> {model}{" "}
-                </p>
-              </Card.Text>
+
+              <div>
+                <span style={{ fontWeight: "bold" }}>Price: </span>${price}{" "}
+              </div>
+              <div>
+                <span style={{ fontWeight: "bold" }}>Mileage: </span>
+                {mileage} Km
+              </div>
+              <div>
+                <span style={{ fontWeight: "bold" }}>Engine: </span> {engine}{" "}
+              </div>
+              <div>
+                <span style={{ fontWeight: "bold" }}>Make: </span> {model}{" "}
+              </div>
+
               <Button
                 variant="primary"
                 style={{ width: "100%" }}

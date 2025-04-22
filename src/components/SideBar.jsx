@@ -10,31 +10,25 @@ export const SideBar = ({ data, setData }) => {
   );
   const [year, setYear] = useState(new Array(years.length).fill(false));
   const [filter, setFilter] = useState(data);
-  //const [everyFilter, setEveryFilter] = useState([]);
 
   const handleYear = (index) => {
     const newYear = [...year];
-    newYear[index] = !year[index]; // Toggle the checkbox state
-    let selectedYears = years.filter((_, i) => newYear[i] === true); // Get all checked years
-    //setEveryFilter([...selectedYears]);
-    //console.log(everyFilter);
+    newYear[index] = !year[index];
+    let selectedYears = years.filter((_, i) => newYear[i] === true);
 
     if (selectedYears.length === 0) {
-      // If no checkboxes are checked, show all data
       setData(filter);
     } else {
-      // If some checkboxes are checked, filter the data accordingly
       const filteredData = filter.filter((car) =>
         selectedYears.includes(parseInt(car.year))
       );
       filteredData.sort((a, b) => {
         return a.year - b.year;
       });
-      console.log(filteredData);
       setData(filteredData);
     }
 
-    setYear(newYear); // Update the checkbox states
+    setYear(newYear);
   };
 
   const handleTransmission = (index) => {
@@ -43,9 +37,6 @@ export const SideBar = ({ data, setData }) => {
     let selectedTransmissions = transmissions.filter(
       (_, i) => newTransmission[i] === true
     );
-    //setEveryFilter({ ...everyFilter, ...selectedTransmissions });
-    //console.log(everyFilter);
-
     if (selectedTransmissions.length === 0) {
       setData(filter);
     } else {
@@ -65,8 +56,6 @@ export const SideBar = ({ data, setData }) => {
     const newColor = [...color];
     newColor[index] = !color[index];
     let selectedColors = colors.filter((_, i) => newColor[i] === true);
-    //setEveryFilter({ ...everyFilter, ...selectedColors });
-    //console.log(everyFilter);
 
     if (selectedColors.length === 0) {
       setData(filter);

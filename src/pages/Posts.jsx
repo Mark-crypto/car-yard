@@ -8,38 +8,27 @@ export const Posts = ({ currentPosts, handleClick }) => {
       {currentPosts
         .sort((a, b) => a.make.localeCompare(b.make))
         .map((car) => {
-          const {
-            id,
-            color,
-            engine,
-            image,
-            make,
-            mileage,
-            model,
-            price,
-            year,
-          } = car;
+          const { id, engine, make, mileage, model, price } = car;
           return (
             <Card style={{ width: "15rem", height: "fit-content" }} key={id}>
               <Card.Img variant="top" src={dodge} alt={make} />
               <Card.Body>
                 <Card.Title style={{ fontWeight: "bold" }}>{make}</Card.Title>
-                <Card.Text>
-                  <p>
-                    <span style={{ fontWeight: "bold" }}>Price: </span>${price}{" "}
-                  </p>
-                  <p>
-                    <span style={{ fontWeight: "bold" }}>Mileage: </span>
-                    {mileage} Km
-                  </p>
-                  <p>
-                    <span style={{ fontWeight: "bold" }}>Engine: </span>{" "}
-                    {engine}{" "}
-                  </p>
-                  <p>
-                    <span style={{ fontWeight: "bold" }}>Make: </span> {model}{" "}
-                  </p>
-                </Card.Text>
+
+                <p>
+                  <span style={{ fontWeight: "bold" }}>Price: </span>${price}{" "}
+                </p>
+                <p>
+                  <span style={{ fontWeight: "bold" }}>Mileage: </span>
+                  {mileage} Km
+                </p>
+                <p>
+                  <span style={{ fontWeight: "bold" }}>Engine: </span> {engine}{" "}
+                </p>
+                <p>
+                  <span style={{ fontWeight: "bold" }}>Make: </span> {model}{" "}
+                </p>
+
                 <Button
                   variant="primary"
                   type="button"

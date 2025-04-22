@@ -1,5 +1,3 @@
-import React from "react";
-
 const CancelPayment = () => {
   const containerStyle = {
     display: "flex",

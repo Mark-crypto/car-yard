@@ -36,10 +36,6 @@ export const SingleProduct = () => {
     }
   }, []);
 
-  const payForProduct = (price) => {
-    dispatch(calculateTotal(price));
-    navigate("/payment");
-  };
   const editCart = (product) => {
     dispatch(addToCart(product));
     dispatch(addItem());
@@ -80,9 +76,6 @@ export const SingleProduct = () => {
             <button type="button" onClick={() => editCart(product)}>
               Add to cart <FaCartPlus />
             </button>
-            {/* <button type="button" onClick={() => payForProduct(product.price)}>
-              <FaApplePay style={{ fontSize: "30px" }} />
-            </button> */}
             <CheckoutButton />
             <button type="button" onClick={() => removeCart(product)}>
               Remove from cart <BsCartDashFill />

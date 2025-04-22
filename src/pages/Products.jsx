@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { NavBar } from "../components/NavBar";
 import { Footers } from "../components/Footers";
 import { Search } from "../components/Search";
-// import { SideBar } from "../components/SideBar";
+import { SideBar } from "../components/SideBar";
 import { Posts } from "./Posts";
 import { Pagination } from "../components/Pagination";
 
@@ -16,9 +16,7 @@ export const Products = () => {
   useEffect(() => {
     try {
       const fetchData = async () => {
-        const dataResponse = await fetch(
-          "https://www.freetestapi.com/api/v1/cars"
-        );
+        const dataResponse = await fetch("/api/api/v1/cars");
         const response = await dataResponse.json();
         setData(response);
         setIsLoading(false);
@@ -27,7 +25,6 @@ export const Products = () => {
     } catch (error) {
       setIsError(true);
       setIsLoading(false);
-      console.log("You have encountered an error:", error.message);
     }
   }, []);
 
@@ -53,9 +50,9 @@ export const Products = () => {
       <Search />
 
       <div className="products">
-        {/* <div className="products-filter">
+        <div className="products-filter">
           <SideBar setData={setData} data={data} />
-        </div> */}
+        </div>
         <div className="products-card">
           <Posts currentPosts={currentPosts} handleClick={handleClick} />
         </div>

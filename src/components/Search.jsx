@@ -19,14 +19,11 @@ export const Search = () => {
     try {
       setLoading(true);
       setError(null);
-      const response = await axios.get(
-        `https://www.freetestapi.com/api/v1/cars?search=${query}`
-      );
-      console.log(response.data);
+      const response = await axios.get(`/api/api/v1/cars?search=${query}`);
+
       setSuggestion(response.data);
     } catch (error) {
       setError("An error occurred. Please try again later.");
-      console.log("Error:", error);
     } finally {
       setLoading(false);
     }
@@ -50,7 +47,7 @@ export const Search = () => {
 
   return (
     <>
-      <div class="search-container">
+      <div className="search-container">
         <div className="search">
           <input
             type="search"

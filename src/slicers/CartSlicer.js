@@ -10,10 +10,10 @@ const cartSlice = createSlice({
   name: "cart",
   initialState,
   reducers: {
-    addItem: (state, action) => {
+    addItem: (state) => {
       state.itemAmount = state.itemAmount + 1;
     },
-    removeItem: (state, action) => {
+    removeItem: (state) => {
       if (state.itemAmount > 0) {
         state.itemAmount = state.itemAmount - 1;
       }
@@ -26,7 +26,7 @@ const cartSlice = createSlice({
       let totalItems = parseInt(state.itemAmount) || 0;
       state.totalPrice += price * totalItems;
     },
-    removeFromCart: (state, action) => {
+    removeFromCart: (state) => {
       state.cartItems.pop();
     },
   },

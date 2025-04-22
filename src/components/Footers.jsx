@@ -52,7 +52,7 @@ export const Footers = () => {
             </li>
             <li>
               <a href="https://tiktok.com">
-                <RiTiktokLine style={{ color: "blue" }} /> <span> Tiktok</span>
+                <RiTiktokLine style={{ color: "blue" }} /> <span> TikTok</span>
               </a>
             </li>
           </ul>

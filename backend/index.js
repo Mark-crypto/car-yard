@@ -18,6 +18,7 @@ app.use(express.json());
 
 app.post("/create-checkout-session", async (req, res) => {
   const { items } = req.body;
+  const quantity = items.length;
   const line_items = items.map((item) => ({
     price_data: {
       currency: "usd",
@@ -26,7 +27,7 @@ app.post("/create-checkout-session", async (req, res) => {
       },
       unit_amount: item.price * 100,
     },
-    quantity: item.quantity || 1,
+    quantity: quantity || 1,
   }));
 
   try {

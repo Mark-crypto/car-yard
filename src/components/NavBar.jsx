@@ -23,11 +23,13 @@ export const NavBar = () => {
         <ul className="nav-list">
           <li>
             <h4>
-              <i>Dreams Car Yard</i>
+              <a href="/">
+                <i>Dreams Car Yard</i>
+              </a>
             </h4>
           </li>
           <li>
-            <a href="/payment">
+            <a href="/products">
               <h5>Shopping Cart</h5>
               <TiShoppingCart style={{ fontSize: "25px" }} />{" "}
               <h5> {itemsInCart} </h5>
