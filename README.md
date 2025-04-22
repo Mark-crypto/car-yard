@@ -65,6 +65,19 @@ A sleek and modern car dealership frontend built with **React**, integrated with
    cd backend
    node index.js
    ```
+6. **Using stripe test environment**
+   - To simulate different outcomes you will need to provide different card numbers:
+  
+   - **Successful payment:** 4242 4242 4242 4242
+   - **Declined card:**	4000 0000 0000 0002
+   - **Insufficient funds:**	4000 0000 0000 9995
+   - **Card requires authentication (3DS):**	4000 0025 0000 3155
+   - **Incorrect CVC:**	4000 0000 0000 0127
+
+   Other card information:
+   - **Expiry Date:** Any future date (e.g., 12/34)
+   - **CVC:** Any 3-digit number (e.g., 123)
+   - **ZIP:** Any 5-digit number (e.g., 12345)
 
 ---
 
